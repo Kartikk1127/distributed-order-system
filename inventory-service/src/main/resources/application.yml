@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: inventory-service
+
+logging:
+  level:
+    root: INFO
+    com.twopc: DEBUG
+  pattern:
+    console: "[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger{36}] - %msg%n"
+
+inventory:
+  wal:
+    base-dir: ./logs
+
+  products:
+    - id: LAPTOP-001
+      name: Dell XPS 15
+      quantity: 10
+      price: 1499.99
+    - id: LAPTOP-002
+      name: MacBook Pro 16
+      quantity: 5
+      price: 2499.99
+    - id: PHONE-001
+      name: iPhone 15 Pro
+      quantity: 20
+      price: 999.99
+    - id: PHONE-002
+      name: Samsung Galaxy S24
+      quantity: 15
+      price: 899.99
+    - id: TABLET-001
+      name: iPad Pro
+      quantity: 8
+      price: 799.99

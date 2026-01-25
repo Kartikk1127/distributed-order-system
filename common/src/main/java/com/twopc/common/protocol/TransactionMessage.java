@@ -31,9 +31,12 @@ public class TransactionMessage {
         return msg;
     }
 
-    public static TransactionMessage voteYes(String transactionId, String senderId) {
+    public static TransactionMessage voteYes(String transactionId, String senderId, Map<String, Object> payload) {
         TransactionMessage msg = new TransactionMessage(transactionId, MessageType.VOTE_YES);
+        msg.transactionId = transactionId;
+        msg.messageType = MessageType.VOTE_YES;
         msg.senderId = senderId;
+        msg.payload = payload;
         return msg;
     }
 
@@ -107,13 +110,6 @@ public class TransactionMessage {
 
     @Override
     public String toString() {
-        return "TransactionMessage{" +
-                "transactionId='" + transactionId + '\'' +
-                ", messageType=" + messageType +
-                ", timestamp=" + timestamp +
-                ", payload=" + payload +
-                ", senderId='" + senderId + '\'' +
-                ", reason='" + reason + '\'' +
-                '}';
+        return String.format("TransactionMessage{txnId=%s, type=%s, sender=%s, reason=%s", transactionId, messageType, senderId, reason);
     }
 }

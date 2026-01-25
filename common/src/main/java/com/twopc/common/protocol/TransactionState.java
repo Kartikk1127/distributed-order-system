@@ -17,7 +17,7 @@ public enum TransactionState {
 
     public boolean canTransitionInto(TransactionState newState) {
         return switch (this) {
-            case INIT -> newState == PREPARING || newState == ABORTED;
+            case INIT -> newState == PREPARING || newState == ABORTED || newState == PREPARED;
             case PREPARING, PREPARED -> newState == COMMITTED || newState == ABORTED;
             default -> false;
         };

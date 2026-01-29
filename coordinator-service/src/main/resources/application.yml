@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: coordinator-service
+
+logging:
+  level:
+    root: INFO
+    com.twopc: DEBUG
+  pattern:
+    console: "[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger{36}] - %msg%n"
+
+coordinator:
+  wal:
+    base-dir: ./logs
+
+  prepare-timeout-seconds: 5
+
+  participants:
+    inventory-service: http://localhost:8081
+    payment-service: http://localhost:8082

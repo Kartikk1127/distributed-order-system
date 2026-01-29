@@ -1,15 +1,28 @@
 package com.twopc.common.protocol;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TransactionMessage {
+    @JsonProperty("transactionId")
     private String transactionId;
+
+    @JsonProperty("messageType")
     private MessageType messageType;
+
+    @JsonProperty("timestamp")
     private LocalDateTime timestamp;
+
+    @JsonProperty("payload")
     private Map<String, Object> payload;
+
+    @JsonProperty("senderId")
     private String senderId;
+
+    @JsonProperty("reason")
     private String reason;
 
     public TransactionMessage() {
@@ -26,6 +39,7 @@ public class TransactionMessage {
     // factory methods for creating messages
     public static TransactionMessage prepare(String transactionId, String senderId, Map<String, Object> operationData) {
         TransactionMessage msg = new TransactionMessage(transactionId, MessageType.PREPARE);
+        msg.transactionId = transactionId;
         msg.senderId = senderId;
         msg.payload = operationData;
         return msg;
@@ -49,6 +63,7 @@ public class TransactionMessage {
 
     public static TransactionMessage commit(String transactionId, String senderId) {
         TransactionMessage msg = new TransactionMessage(transactionId, MessageType.COMMIT);
+        msg.transactionId = transactionId;
         msg.senderId = senderId;
         return msg;
     }
